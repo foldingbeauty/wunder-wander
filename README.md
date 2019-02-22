@@ -15,11 +15,15 @@ Work in Progress | Proof of Concept
 
 `$ kubectl apply -f deployment`
 
-- Get the SSH Public key
+- Get the SSH Public key and add the key to your Git repository
 
-`$ ...`
+`$ kubectl get  secret/ssh-keys -n wunderwander-gitops -o jsonpath="{.data.public_key}"| base64 --decode ; echo`
 
-- Create a Gitops Resource
+```
+ssh-rsa ... ==
+```
+
+- Create a Gitops Resource with your Git repository
 
 
 *example-gitops-crd.yaml*
