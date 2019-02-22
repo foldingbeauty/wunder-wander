@@ -1,4 +1,4 @@
-# Wander-Wonder Gitops
+# Wunder-Wander Gitops
 An easy to use GitOps deployment tool for Kubernetes workloads.
 
 ## Status
@@ -11,7 +11,7 @@ Work in Progress | Proof of Concept
 
 `$ kubectl apply -f deployment/namespace.yaml`
 
-- Deploy the Wander-Wonder Gitops controller and CRD:
+- Deploy the Wunder-Wander Gitops controller and CRD:
 
 `$ kubectl apply -f deployment`
 
