@@ -1,0 +1,1 @@
+ssh -o StrictHostKeyChecking=no -i /app/.ssh/id_rsa $1 $2

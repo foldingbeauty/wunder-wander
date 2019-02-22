@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitops-operator-controller
+  namespace: wunderwander-gitops
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitops-operator-controller
+  template:
+    metadata:
+      labels:
+        app: gitops-operator-controller
+    spec:
+      serviceAccountName: gitops-access-api
+      containers:
+        - name: gitops-operator-controller-mainprocess
+          image: kamerblauwlicht/gitops:1.0.23
+          command: ["ruby"]
+          args: ["wunderwander-gitops-operator.rb"]

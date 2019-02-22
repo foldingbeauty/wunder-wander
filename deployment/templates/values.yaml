@@ -1,0 +1,4 @@
+---
+image: kamerblauwlicht/gitops:1.0.23
+namespace: wunderwander-gitops
+---

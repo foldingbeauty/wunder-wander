@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitops-operator-ui
+  namespace:  {{ namespace }}
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitops-operator-ui
+  template:
+    metadata:
+      labels:
+        app: gitops-operator-ui
+    spec:
+      serviceAccountName: gitops-access-api
+      containers:
+        - name: gitops-operator-ui-mainprocess
+          image: {{ image }}
+          command: ["ruby"]
+          args: ["wunderwander-gitops-frontend.rb"]
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 3

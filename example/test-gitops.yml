@@ -1,0 +1,8 @@
+apiVersion: "io.wunderwander/v1"
+kind: GitOp
+metadata:
+  name: test
+  namespace: wunderwander-gitops
+spec:
+  repo: git@gitlab.com:kamerblauwlicht/test-app.git
+  branch: master

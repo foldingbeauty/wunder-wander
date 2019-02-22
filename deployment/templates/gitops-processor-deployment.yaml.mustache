@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: xx
+  namespace:  {{ namespace }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: xx
+    spec:
+      serviceAccountName: gitops-access-api
+      containers:
+        - name: gitops
+          image: {{ image }}
+          command: ["ruby"]
+          args: ["wunderwander-gitops-worker.rb"]
+          env:
+            - name: GIT_BRANCH
+              value: xx
+            - name: GIT_REPO
+              value: xx
+            - name: GIT_NAME
+              value: xx
+          volumeMounts:
+            - name: ssh-keys
+              mountPath: "/app/.ssh"
+      volumes:
+      - name: ssh-keys
+        secret:
+          secretName: ssh-keys
+          items:
+          - key: private_key
+            path: id_rsa
+          defaultMode: 256
