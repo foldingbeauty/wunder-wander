@@ -1,4 +1,4 @@
 ---
-image: kamerblauwlicht/gitops:1.0.23
+image: foldingbeauty/wunderwander-gitops:0.1.0
 namespace: wunderwander-gitops
 ---

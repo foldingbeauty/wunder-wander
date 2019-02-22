@@ -13,7 +13,7 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops
-          image: kamerblauwlicht/gitops:1.0.23
+          image: foldingbeauty/wunderwander-gitops:0.1.0
           command: ["ruby"]
           args: ["wunderwander-gitops-worker.rb"]
           env:
