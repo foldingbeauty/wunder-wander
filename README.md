@@ -11,13 +11,9 @@ Work in Progress | Proof of Concept
 
 ## How to use
 
-- Create the namespace first:
-
-`$ kubectl apply -f deployment/namespace.yaml`
-
 - Deploy the Wunder-Wander Gitops controller and CRD:
 
-`$ kubectl apply -f deployment`
+`$ kubectl apply -f https://raw.githubusercontent.com/foldingbeauty/wunder-wander/master/deployment/deployment.yaml`
 
 - Get the SSH Public key and add the key to your Git repository
 
