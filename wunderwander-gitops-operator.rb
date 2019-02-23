@@ -21,7 +21,7 @@ module WunderWander
       api = @k8s_client.client.api('io.wunderwander/v1')
       gitops = api.resource('gitops', namespace: K8sHelpers::GITOPS_NAMESPACE)
       gitops.list.each do |resource|
-        processor_template = 'config/gitops-processor-deployment.yaml'
+        processor_template = 'operator/config-template/worker-deployment-template.yaml'
         processor = K8s::Resource.from_file(processor_template)
         processor.metadata.namespace = K8sHelpers::GITOPS_NAMESPACE
         processor.metadata.name = resource.metadata.name
