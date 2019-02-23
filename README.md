@@ -1,6 +1,10 @@
 # Wunder-Wander Gitops
 An easy to use GitOps deployment tool for Kubernetes workloads.
 
+## Quality
+[![Maintainability](https://api.codeclimate.com/v1/badges/1a75cf1d0c809b33d08f/maintainability)](https://codeclimate.com/github/foldingbeauty/wunder-wander/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1a75cf1d0c809b33d08f/test_coverage)](https://codeclimate.com/github/foldingbeauty/wunder-wander/test_coverage)
+
 ## Status
 
 Work in Progress | Proof of Concept
