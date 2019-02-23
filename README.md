@@ -9,6 +9,10 @@ An easy to use GitOps deployment tool for Kubernetes workloads.
 
 Work in Progress | Proof of Concept
 
+## Why WunderWander Gitops?
+
+TBD
+
 ## How to use
 
 - Deploy the Wunder-Wander Gitops controller and CRD:
