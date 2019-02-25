@@ -113,3 +113,9 @@ I, [2019-02-25T20:17:35.523779 #1]  INFO -- : Deployment changed, update deploym
 ```
 
 Wunder-Wander for the Win!
+
+```
+$ kubectl get pods -n test
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-6cbcd97dd7-rc2hh   1/1     Running   0          21m
+```
