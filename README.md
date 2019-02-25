@@ -17,7 +17,28 @@ TBD
 
 - Deploy the Wunder-Wander Gitops controller and CRD:
 
+
 `$ kubectl apply -f https://raw.githubusercontent.com/foldingbeauty/wunder-wander/master/deployment/deployment.yaml`
+
+
+- Check if everything is ready to go:
+
+```
+$ kubectl get all -n wunderwander-gitops
+
+NAME                                              READY   STATUS    RESTARTS   AGE
+pod/gitops-operator-controller-64757768b5-g82jr   1/1     Running   0          22s
+pod/gitops-operator-ui-6b978c66bf-5jkcg           1/1     Running   1          22s
+
+NAME                                         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/gitops-operator-controller   1         1         1            1           24s
+deployment.apps/gitops-operator-ui           1         1         1            1           24s
+
+NAME                                                    DESIRED   CURRENT   READY   AGE
+replicaset.apps/gitops-operator-controller-64757768b5   1         1         1       24s
+replicaset.apps/gitops-operator-ui-6b978c66bf           1         1         1       24s
+
+```
 
 - Get the SSH Public key and add the key to your Git repository
 
