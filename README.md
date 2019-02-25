@@ -68,4 +68,44 @@ spec:
 
 When a GitOps resource is deployed, the Wunder-Wander controller will checkout the Git repository and start deploying the contents. 
 
+- Check the deployment
+
+```
+$ kubectl get all -n wunderwander-gitops
+
+NAME                                              READY   STATUS    RESTARTS   AGE
+pod/gitops-operator-controller-64757768b5-g82jr   1/1     Running   0          6m24s
+pod/gitops-operator-ui-6b978c66bf-5jkcg           1/1     Running   1          6m24s
+pod/test-app-c67cd5bfc-wqmq8                      1/1     Running   0          50s
+
+NAME                                         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/gitops-operator-controller   1         1         1            1           6m25s
+deployment.apps/gitops-operator-ui           1         1         1            1           6m25s
+deployment.apps/test-app                     1         1         1            1           50s
+
+NAME                                                    DESIRED   CURRENT   READY   AGE
+replicaset.apps/gitops-operator-controller-64757768b5   1         1         1       6m25s
+replicaset.apps/gitops-operator-ui-6b978c66bf           1         1         1       6m25s
+replicaset.apps/test-app-c67cd5bfc                      1         1         1       50s
+```
+
+- Check if you the GitOps worker can connect to your Git repository
+
+```
+$ kubectl logs deploy/test-app -n wunderwander-gitops
+
+I, [2019-02-25T20:13:20.943442 #1]  INFO -- : ---
+I, [2019-02-25T20:13:20.943755 #1]  INFO -- : WunderWander GitOps Worker v0.1.0
+I, [2019-02-25T20:13:20.943846 #1]  INFO -- : Lets get to work!
+I, [2019-02-25T20:13:20.943921 #1]  INFO -- : ---
+I, [2019-02-25T20:13:20.944243 #1]  INFO -- : Create deployment namespace test
+I, [2019-02-25T20:13:21.006650 #1]  INFO -- : Check SSH connection to github.com
+I, [2019-02-25T20:13:21.906947 #1]  INFO -- : Can connect to Git repo github.com
+I, [2019-02-25T20:13:21.907545 #1]  INFO -- : Retry in 10 seconds.
+.... // ADD YOUR SSH KEY TO YOUR GIT REPO!
+I, [2019-02-25T20:17:22.085614 #1]  INFO -- : SSH connection to github.com OK!
+I, [2019-02-25T20:17:22.086103 #1]  INFO -- : ---
+I, [2019-02-25T20:17:35.523779 #1]  INFO -- : Deployment changed, update deployment with ref 764adde6d33b9bae36e4d660175441c6600bc71d
+```
+
 Wunder-Wander for the Win!
