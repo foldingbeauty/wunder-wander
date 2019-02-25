@@ -56,10 +56,11 @@ ssh-rsa ... ==
 apiVersion: "io.wunderwander/v1"
 kind: GitOp
 metadata:
-  name: test
+  # the name of the CRD + branch name is the name of the namespace
+  name: test-app
   namespace: wunderwander-gitops
 spec:
-  repo: git@github.com:foldingbeauty/test-app.git
+  repo: git@github.com:foldingbeauty/wunderwander-test-app.git
   branch: master
 ```
 
