@@ -5,4 +5,5 @@ AllCops:
     - frontend/**/*
     - operator/**/*
     - spec/**/*
+    - vendor/**/*
     
