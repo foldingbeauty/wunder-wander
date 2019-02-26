@@ -5,9 +5,9 @@ WORKDIR /app
 COPY Gemfile .
 RUN bundle install
 
-COPY public public
-COPY views views
-COPY config config
+COPY deployment deployment
+COPY frontend frontend
+COPY operator operator
 COPY lib lib
 COPY access.sh .
 COPY wunderwander-gitops-operator.rb .
