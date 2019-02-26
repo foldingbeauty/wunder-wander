@@ -4,5 +4,5 @@ AllCops:
     - examples/**/*
     - frontend/**/*
     - operator/**/*
-    - spec/**/8
+    - spec/**/*
     
