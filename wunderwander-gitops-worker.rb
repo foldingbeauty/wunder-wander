@@ -16,7 +16,7 @@ def setup_logger
   $stdout.sync = true
   logger = Logger.new($stdout)
   logger.info '---'
-  logger.info 'WunderWander GitOps Worker v0.1.0'
+  logger.info 'WunderWander GitOps Worker v0.1.1'
   logger.info 'Lets get to work!'
   logger.info '---'
   logger

@@ -10,7 +10,7 @@ module WunderWander
       @logger = LogHelpers::create_logger
       @k8s_client = K8sHelpers::Client.new
       @logger.info '---'
-      @logger.info 'WunderWander GitOps Operator v0.1.0'
+      @logger.info 'WunderWander GitOps Operator v0.1.1'
       @logger.info '---'
       
       # create secret
