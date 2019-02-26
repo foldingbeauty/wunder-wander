@@ -10,7 +10,7 @@ module WunderWander
       @logger = LogHelpers::create_logger
       @k8s_client = K8sHelpers::Client.new
       @logger.info '---'
-      @logger.info 'WunderWander GitOps Operator v0.1.0'
+      @logger.info 'WunderWander GitOps Operator v0.1.1'
       @logger.info '---'
       
       # create secret
@@ -24,19 +24,23 @@ module WunderWander
         processor_template = 'operator/config-template/worker-deployment-template.yaml'
         processor = K8s::Resource.from_file(processor_template)
         processor.metadata.namespace = K8sHelpers::GITOPS_NAMESPACE
-        processor.metadata.name = resource.metadata.name
+        worker_name = "worker-#{resource.metadata.name}"
+        processor.metadata.name = worker_name
         spec_template = processor.spec.template
-        spec_template.metadata.labels.app = resource.metadata.name
+        spec_template.metadata.labels.app = worker_name
         spec_template.spec.containers[0].env[0].value = resource.spec.branch
         spec_template.spec.containers[0].env[1].value = resource.spec.repo
         spec_template.spec.containers[0].env[2].value = resource.metadata.name
-        @logger.info "Deploy processor for #{resource.metadata.name}"
+        # GITOPS_NAMESPACE
+        spec_template.spec.containers[0].env[3].value = "#{resource.metadata.name}-#{resource.spec.branch}"
+
+        @logger.info "Deploy worker for #{resource.metadata.name}"
         begin
           @k8s_client.client.get_resource(processor)
-          @logger.info "Processor for #{resource.metadata.name} already deployed"
+          @logger.info "Worker for #{resource.metadata.name} already deployed"
         rescue K8s::Error::NotFound
           @k8s_client.client.create_resource(processor)
-          @logger.info "Processor for #{resource.metadata.name} deployed"
+          @logger.info "Worker for #{resource.metadata.name} deployed"
         end
       end
       @logger.info 'Next check for WunderWander Gitops resources in 10 seconds'
