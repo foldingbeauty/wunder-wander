@@ -1,0 +1,9 @@
+AllCops:
+  Exclude:
+    - deployment/**/*
+    - examples/**/*
+    - frontend/**/*
+    - operator/**/*
+    - spec/**/*
+    - vendor/**/*
+    
