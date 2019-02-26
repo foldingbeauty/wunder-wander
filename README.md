@@ -80,12 +80,12 @@ $ kubectl get all -n wunderwander-gitops
 NAME                                              READY   STATUS    RESTARTS   AGE
 pod/gitops-operator-controller-64757768b5-g82jr   1/1     Running   0          6m24s
 pod/gitops-operator-ui-6b978c66bf-5jkcg           1/1     Running   1          6m24s
-pod/test-app-c67cd5bfc-wqmq8                      1/1     Running   0          50s
+pod/worker-test-app-c67cd5bfc-wqmq8               1/1     Running   0          50s
 
 NAME                                         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/gitops-operator-controller   1         1         1            1           6m25s
 deployment.apps/gitops-operator-ui           1         1         1            1           6m25s
-deployment.apps/test-app                     1         1         1            1           50s
+deployment.apps/worker-test-app              1         1         1            1           50s
 
 NAME                                                    DESIRED   CURRENT   READY   AGE
 replicaset.apps/gitops-operator-controller-64757768b5   1         1         1       6m25s
@@ -99,7 +99,7 @@ replicaset.apps/test-app-c67cd5bfc                      1         1         1   
 $ kubectl logs deploy/test-app -n wunderwander-gitops
 
 I, [2019-02-25T20:13:20.943442 #1]  INFO -- : ---
-I, [2019-02-25T20:13:20.943755 #1]  INFO -- : WunderWander GitOps Worker v0.1.0
+I, [2019-02-25T20:13:20.943755 #1]  INFO -- : WunderWander GitOps Worker v0.1.1
 I, [2019-02-25T20:13:20.943846 #1]  INFO -- : Lets get to work!
 I, [2019-02-25T20:13:20.943921 #1]  INFO -- : ---
 I, [2019-02-25T20:13:20.944243 #1]  INFO -- : Create deployment namespace test
