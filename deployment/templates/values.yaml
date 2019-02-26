@@ -1,4 +1,4 @@
 ---
-image: foldingbeauty/wunderwander-gitops:0.1.0
+image: foldingbeauty/wunderwander-gitops:0.1.1
 namespace: wunderwander-gitops
 ---
