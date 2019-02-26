@@ -1,13 +1,13 @@
 
 
-![alt text](https://github.com/foldingbeauty/wunder-wander/blob/master/logo.png "Logo Wunder-Wander Gitops")
+![alt text](https://github.com/foldingbeauty/wunder-wander/raw/master/frontend/public/assets/images/logo.png "Logo Wunder-Wander Gitops")
 
 
 An easy to use GitOps deployment tool for Kubernetes workloads.
 
 ## Quality
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a75cf1d0c809b33d08f/maintainability)](https://codeclimate.com/github/foldingbeauty/wunder-wander/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/1a75cf1d0c809b33d08f/test_coverage)](https://codeclimate.com/github/foldingbeauty/wunder-wander/test_coverage)
+[![CircleCI](https://circleci.com/gh/foldingbeauty/wunder-wander/tree/master.svg?style=svg)](https://circleci.com/gh/foldingbeauty/wunder-wander/tree/master)
 
 ## Status
 
@@ -22,7 +22,7 @@ TBD
 - Deploy the Wunder-Wander Gitops controller and CRD:
 
 
-`$ kubectl apply -f https://raw.githubusercontent.com/foldingbeauty/wunder-wander/master/deployment/deployment.yaml`
+`$ kubectl apply -f https://raw.githubusercontent.com/foldingbeauty/wunder-wander/0.1.1/deployment/deployment.yaml`
 
 
 - Check if everything is ready to go:
@@ -80,12 +80,12 @@ $ kubectl get all -n wunderwander-gitops
 NAME                                              READY   STATUS    RESTARTS   AGE
 pod/gitops-operator-controller-64757768b5-g82jr   1/1     Running   0          6m24s
 pod/gitops-operator-ui-6b978c66bf-5jkcg           1/1     Running   1          6m24s
-pod/test-app-c67cd5bfc-wqmq8                      1/1     Running   0          50s
+pod/worker-test-app-c67cd5bfc-wqmq8               1/1     Running   0          50s
 
 NAME                                         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/gitops-operator-controller   1         1         1            1           6m25s
 deployment.apps/gitops-operator-ui           1         1         1            1           6m25s
-deployment.apps/test-app                     1         1         1            1           50s
+deployment.apps/worker-test-app              1         1         1            1           50s
 
 NAME                                                    DESIRED   CURRENT   READY   AGE
 replicaset.apps/gitops-operator-controller-64757768b5   1         1         1       6m25s
@@ -99,7 +99,7 @@ replicaset.apps/test-app-c67cd5bfc                      1         1         1   
 $ kubectl logs deploy/test-app -n wunderwander-gitops
 
 I, [2019-02-25T20:13:20.943442 #1]  INFO -- : ---
-I, [2019-02-25T20:13:20.943755 #1]  INFO -- : WunderWander GitOps Worker v0.1.0
+I, [2019-02-25T20:13:20.943755 #1]  INFO -- : WunderWander GitOps Worker v0.1.1
 I, [2019-02-25T20:13:20.943846 #1]  INFO -- : Lets get to work!
 I, [2019-02-25T20:13:20.943921 #1]  INFO -- : ---
 I, [2019-02-25T20:13:20.944243 #1]  INFO -- : Create deployment namespace test
