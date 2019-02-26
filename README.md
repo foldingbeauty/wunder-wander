@@ -1,6 +1,6 @@
 
 
-![alt text](https://github.com/foldingbeauty/wunder-wander/blob/master/logo.png "Logo Wunder-Wander Gitops")
+![alt text](https://github.com/foldingbeauty/wunder-wander/blob/master/frontend/public/assets/images/logo.png "Logo Wunder-Wander Gitops")
 
 
 An easy to use GitOps deployment tool for Kubernetes workloads.

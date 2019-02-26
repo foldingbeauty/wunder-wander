@@ -18,7 +18,7 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops-operator-ui-mainprocess
-          image: foldingbeauty/wunderwander-gitops:0.1.0
+          image: foldingbeauty/wunderwander-gitops:0.1.1
           command: ["ruby"]
           args: ["wunderwander-gitops-frontend.rb"]
           livenessProbe:

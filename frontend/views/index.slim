@@ -5,15 +5,17 @@ html
     title test
   body
     script type="text/javascript" src="assets/js/bootstrap.min.js"
+    section class="jumbotron text-center"
+      div class="container"
+        div class="jumbotron-heading" 
+          img class="rounded"  src="assets/images/logo.png"
+        p class="lead text-muted" An easy to use GitOps deployment tool for Kubernetes workloads.
+
     div class="container"
       div class="row"
         div class="col-lg-12"
-          h1 GitOps Operator V0.1.1
-      div class="row"
-        div class="col-lg-12"
           h3 Public SSH key
-          div class="alert alert-dismissible alert-info"
-            h4 class="alert-heading" Info
+          div class="alert alert-dismissible alert-warning"
             p class="mb-0" Please add the Public SSH key to your Git repository
           table class='table table-hover'
             tbody

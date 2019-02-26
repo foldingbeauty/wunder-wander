@@ -10,7 +10,7 @@ module WunderWander
       @logger = LogHelpers::create_logger
       @k8s_client = K8sHelpers::Client.new
       @logger.info '---'
-      @logger.info 'WunderWander GitOps Operator v0.1.0'
+      @logger.info 'WunderWander GitOps Operator v0.1.1'
       @logger.info '---'
       
       # create secret
@@ -30,6 +30,9 @@ module WunderWander
         spec_template.spec.containers[0].env[0].value = resource.spec.branch
         spec_template.spec.containers[0].env[1].value = resource.spec.repo
         spec_template.spec.containers[0].env[2].value = resource.metadata.name
+        # GITOPS_NAMESPACE
+        spec_template.spec.containers[0].env[3].value = "#{resource.metadata.name}-#{resource.spec.branch}"
+
         @logger.info "Deploy processor for #{resource.metadata.name}"
         begin
           @k8s_client.client.get_resource(processor)
