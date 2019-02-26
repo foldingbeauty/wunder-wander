@@ -23,6 +23,8 @@ spec:
               value: xx
             - name: GIT_NAME
               value: xx
+            - name: GITOPS_NAMESPACE
+              value: xx
           volumeMounts:
             - name: ssh-keys
               mountPath: "/app/.ssh"
