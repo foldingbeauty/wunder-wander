@@ -13,7 +13,7 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops
-          image: foldingbeauty/wunderwander-gitops:0.1.0
+          image: foldingbeauty/wunderwander-gitops:0.1.1
           command: ["ruby"]
           args: ["wunderwander-gitops-worker.rb"]
           env:
@@ -22,6 +22,8 @@ spec:
             - name: GIT_REPO
               value: xx
             - name: GIT_NAME
+              value: xx
+            - name: GITOPS_NAMESPACE
               value: xx
           volumeMounts:
             - name: ssh-keys

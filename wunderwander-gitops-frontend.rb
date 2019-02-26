@@ -9,7 +9,7 @@ module WunderWander
       @logger = LogHelpers::create_logger
       @k8s_client = K8sHelpers::Client.new
       @logger.info '---'
-      @logger.info 'WunderWander GitOps Frontend v0.1.0'
+      @logger.info 'WunderWander GitOps Frontend v0.1.1'
       @logger.info '---'
     end
 
@@ -44,10 +44,11 @@ git_ops_frontend.wait_for_public_key
 set :environment, :development
 set :port, 3000
 set :bind, '0.0.0.0'
+set :root, File.expand_path('./frontend')
 
 get '/' do
-  @entries = git_ops_frontend.gitop_resources
-  @public_key = git_ops_frontend.public_key
+  @entries = git_ops_frontend.gitop_resources || []
+  @public_key =  git_ops_frontend.public_key || 'not available yet'
   slim :index
 end
 
