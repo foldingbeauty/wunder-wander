@@ -36,7 +36,7 @@ end
 logger = setup_logger
 
 # create Kubernetes client
-k8s_client = K8sHelpers::Client.new
+k8s_client = K8sHelpers::Client.new logger
 
 # create namespace
 deployment_name_space = ENV['GITOPS_NAMESPACE'] || 'test'
