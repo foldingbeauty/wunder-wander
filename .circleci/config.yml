@@ -48,11 +48,11 @@ jobs:
       # cucumber
        - run:
           name: Run cucumber in parallel
-          command: |
+          command:
             - mkdir -p $CIRCLE_TEST_REPORTS/cucumber
             - bundle exec cucumber --format junit --out $CIRCLE_TEST_REPORTS/cucumber/junit.xml                        
       
-            # rubocop
+      # rubocop
       - run:
           name: Run rubocop (linter)
           command: |
