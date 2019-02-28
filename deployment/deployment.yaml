@@ -58,7 +58,7 @@ spec:
         - name: gitops-operator-controller-mainprocess
           image: foldingbeauty/wunderwander-gitops:0.1.2-dev
           command: ["ruby"]
-          args: ["wunderwander-gitops-operator.rb"]
+          args: ["wunderwander_gitops_operator.rb"]
 ---
 # source (0.1.0) = deployment_gitops_ui.yaml
 apiVersion: apps/v1
@@ -83,7 +83,7 @@ spec:
         - name: gitops-operator-ui-mainprocess
           image: foldingbeauty/wunderwander-gitops:0.1.2-dev
           command: ["ruby"]
-          args: ["wunderwander-gitops-frontend.rb"]
+          args: ["wunderwander_gitops_frontend.rb"]
           livenessProbe:
             httpGet:
               path: /

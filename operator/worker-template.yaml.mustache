@@ -15,7 +15,7 @@ spec:
         - name: gitops
           image: {{ image }}
           command: ["ruby"]
-          args: ["wunderwander-gitops-worker.rb"]
+          args: ["wunderwander_gitops_worker.rb"]
           env:
             - name: GIT_BRANCH
               value: {{ git_branch }}
