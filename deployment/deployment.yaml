@@ -56,7 +56,7 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops-operator-controller-mainprocess
-          image: foldingbeauty/wunderwander-gitops:0.1.1
+          image: foldingbeauty/wunderwander-gitops:0.1.2-dev
           command: ["ruby"]
           args: ["wunderwander-gitops-operator.rb"]
 ---
@@ -81,7 +81,7 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops-operator-ui-mainprocess
-          image: foldingbeauty/wunderwander-gitops:0.1.1
+          image: foldingbeauty/wunderwander-gitops:0.1.2-dev
           command: ["ruby"]
           args: ["wunderwander-gitops-frontend.rb"]
           livenessProbe:
