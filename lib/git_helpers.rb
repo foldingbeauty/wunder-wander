@@ -38,11 +38,11 @@ module GitHelpers
     end
 
     def prepare
-      if Dir.exist?(@repo_storage_directory)
-        @client = Git.open(@repo_storage_directory, log: @logger)
-      else
-        @client = Git.clone(@repo, @repo_name, path: GitHelpers::LOCAL_GIT_STORAGE, log: @logger)
-      end
+      @client = if Dir.exist?(@repo_storage_directory)
+                  Git.open(@repo_storage_directory, log: @logger)
+                else
+                  Git.clone(@repo, @repo_name, path: GitHelpers::LOCAL_GIT_STORAGE, log: @logger)
+                end
     end
 
     def pull

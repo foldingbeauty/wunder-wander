@@ -32,13 +32,12 @@ jobs:
                               --out test_results/rspec.xml \
                               --format progress \
                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-                              
+
       # cucumber
       - run:
           name: Run cucumber in parallel
-          command:
-            - mkdir -p $CIRCLE_TEST_REPORTS/cucumber
-            - bundle exec cucumber --format junit --out $CIRCLE_TEST_REPORTS/cucumber/junit.xml                        
+          command: |
+            bundle exec cucumber --format junit --out test_results/cucumber.xml                        
       
       # rubocop
       - run:

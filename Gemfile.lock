@@ -68,6 +68,7 @@ GEM
       yaml-safe_load_stream (~> 0.1)
     multi_json (1.13.1)
     multi_test (0.1.2)
+    mustache (1.1.0)
     mustermann (1.0.3)
     net-ssh (5.1.0)
     parallel (1.13.0)
@@ -131,6 +132,7 @@ DEPENDENCIES
   cucumber
   git
   k8s-client
+  mustache
   net-ssh
   rspec
   rspec_junit_formatter
