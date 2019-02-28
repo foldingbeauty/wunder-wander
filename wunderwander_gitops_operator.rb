@@ -37,7 +37,7 @@ module WunderWander
       template[:git_name] = resource.metadata.name
       template[:gitops_namespace] = "#{resource.metadata.name}-#{resource.spec.branch}"
       template[:namespace] = K8sHelpers::GITOPS_NAMESPACE
-      K8s::Resource.new(YAML.load(template.render))
+      K8s::Resource.new(YAML.safe_load(template.render))
     end
 
     def deploy_worker(worker)
