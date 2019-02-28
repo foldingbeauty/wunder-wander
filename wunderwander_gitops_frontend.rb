@@ -11,7 +11,7 @@ module WunderWander
       @logger = LogHelpers.create_logger
       @k8s_client = K8sHelpers::Client.new @logger
       @logger.info '---'
-      @logger.info 'WunderWander GitOps Frontend v0.1.1'
+      @logger.info 'WunderWander GitOps Frontend v0.1.3'
       @logger.info '---'
     end
 

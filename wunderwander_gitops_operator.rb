@@ -13,7 +13,7 @@ module WunderWander
 
   # Operator
   class GitopsOperator
-    VERSION = '0.1.2-dev'.freeze
+    VERSION = '0.1.3'.freeze
     BASE_IMAGE = 'foldingbeauty/wunderwander-gitops'.freeze
 
     def initialize
