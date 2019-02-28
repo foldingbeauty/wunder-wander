@@ -1,30 +1,30 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: xx
-  namespace:  wunderwander-gitops
+  name: {{ name }}
+  namespace:  {{ namespace }}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: xx
+        app: {{ name }}
     spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops
-          image: foldingbeauty/wunderwander-gitops:0.1.1
+          image: {{ image }}
           command: ["ruby"]
-          args: ["wunderwander-gitops-worker.rb"]
+          args: ["wunderwander_gitops_worker.rb"]
           env:
             - name: GIT_BRANCH
-              value: xx
+              value: {{ git_branch }}
             - name: GIT_REPO
-              value: xx
+              value: {{ git_repo }}
             - name: GIT_NAME
-              value: xx
+              value: {{ git_name }}
             - name: GITOPS_NAMESPACE
-              value: xx
+              value: {{ gitops_namespace }}
           volumeMounts:
             - name: ssh-keys
               mountPath: "/app/.ssh"

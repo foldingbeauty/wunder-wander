@@ -16,7 +16,7 @@ def setup_logger
   $stdout.sync = true
   logger = Logger.new($stdout)
   logger.info '---'
-  logger.info 'WunderWander GitOps Worker v0.1.1'
+  logger.info 'WunderWander GitOps Worker v0.1.3'
   logger.info 'Lets get to work!'
   logger.info '---'
   logger
@@ -36,7 +36,7 @@ end
 logger = setup_logger
 
 # create Kubernetes client
-k8s_client = K8sHelpers::Client.new
+k8s_client = K8sHelpers::Client.new logger
 
 # create namespace
 deployment_name_space = ENV['GITOPS_NAMESPACE'] || 'test'

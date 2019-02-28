@@ -12,7 +12,7 @@ module K8sHelpers
   class Client
     attr_reader :client
 
-    def initialize
+    def initialize(logger)
       @client = if File.exist?(File.expand_path(K8sHelpers::DEFAULT_K8S_CONFIG))
                   K8s::Client.config(
                     K8s::Config.load_file(
@@ -22,6 +22,7 @@ module K8sHelpers
                 else
                   K8s::Client.in_cluster_config
                 end
+      @logger = logger
     end
 
     def create_key_pair_resource
@@ -36,13 +37,11 @@ module K8sHelpers
       )
     end
 
-    def resource_exists? resource
-      begin
-        available = @client.get_resource(resource)
-        return true if available
-      rescue K8s::Error::NotFound
-        return false
-      end
+    def resource_exists?(resource)
+      available = @client.get_resource(resource)
+      return true if available
+    rescue K8s::Error::NotFound
+      false
     end
 
     def generate_pki
@@ -87,7 +86,7 @@ module K8sHelpers
         available = @client.get_resource(resource)
         @client.update_resource(resource) if available
       rescue K8s::Error::Invalid
-       # @logger.info "Can't update resource #{resource}"
+        @logger.info "Can't update resource #{resource}"
       rescue K8s::Error::NotFound
         @client.create_resource(resource)
       end

@@ -7,3 +7,7 @@ AllCops:
     - spec/**/*
     - vendor/**/*
     
+Metrics/LineLength:
+  Max: 99
+Metrics/AbcSize:
+  Max: 20
