@@ -1,12 +1,12 @@
 $LOAD_PATH << '.'
-require "sinatra"
+require 'sinatra'
 require 'lib/k8s_helpers'
 require 'lib/log_helpers'
 
 module WunderWander
   class GitopsFrontend
-    def initialize()
-      @logger = LogHelpers::create_logger
+    def initialize
+      @logger = LogHelpers.create_logger
       @k8s_client = K8sHelpers::Client.new
       @logger.info '---'
       @logger.info 'WunderWander GitOps Frontend v0.1.1'
@@ -26,7 +26,7 @@ module WunderWander
         end
       end
     end
-    
+
     def public_key
       @logger.info 'Retreiving Public SSH key'
       public_key = @k8s_client.public_key
@@ -38,7 +38,7 @@ module WunderWander
  end
 end
 
-git_ops_frontend = WunderWander::GitopsFrontend.new()
+git_ops_frontend = WunderWander::GitopsFrontend.new
 git_ops_frontend.wait_for_public_key
 
 set :environment, :development
@@ -48,8 +48,6 @@ set :root, File.expand_path('./frontend')
 
 get '/' do
   @entries = git_ops_frontend.gitop_resources || []
-  @public_key =  git_ops_frontend.public_key || 'not available yet'
+  @public_key = git_ops_frontend.public_key || 'not available yet'
   slim :index
 end
-
-

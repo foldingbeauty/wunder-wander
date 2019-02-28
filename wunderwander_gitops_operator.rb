@@ -6,13 +6,13 @@ require 'lib/log_helpers'
 
 module WunderWander
   class GitopsOperator
-    def initialize()
-      @logger = LogHelpers::create_logger
+    def initialize
+      @logger = LogHelpers.create_logger
       @k8s_client = K8sHelpers::Client.new
       @logger.info '---'
       @logger.info 'WunderWander GitOps Operator v0.1.1'
       @logger.info '---'
-      
+
       # create secret
       @k8s_client.create_key_pair
     end
@@ -50,7 +50,7 @@ module WunderWander
   end
 end
 
-git_ops_operator = WunderWander::GitopsOperator.new()
+git_ops_operator = WunderWander::GitopsOperator.new
 loop do
-  git_ops_operator.observe_gitops_resources_and_act()
+  git_ops_operator.observe_gitops_resources_and_act
 end
