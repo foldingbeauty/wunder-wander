@@ -14,6 +14,7 @@ COPY frontend frontend
 COPY operator operator
 COPY lib lib
 COPY access.sh .
+
 COPY wunderwander_gitops_operator.rb .
 COPY wunderwander_gitops_worker.rb .
 COPY wunderwander_gitops_frontend.rb .
