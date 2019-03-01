@@ -13,3 +13,4 @@ gem 'slim'
 gem 'sshkey'
 gem 'thin'
 gem 'uri-ssh_git'
+gem 'coveralls', require: false
