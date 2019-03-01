@@ -8,6 +8,7 @@ require 'net/ssh'
 require 'uri/ssh_git'
 require 'lib/k8s_helpers'
 require 'lib/git_helpers'
+require 'lib/wunderwander_helpers'
 
 DEFAULT_PULL_FREQENCY = 10
 
@@ -16,7 +17,7 @@ def setup_logger
   $stdout.sync = true
   logger = Logger.new($stdout)
   logger.info '---'
-  logger.info 'WunderWander GitOps Worker v0.1.3'
+  logger.info "WunderWander GitOps Worker v#{WunderWanderHelpers::VERSION}"
   logger.info 'Lets get to work!'
   logger.info '---'
   logger

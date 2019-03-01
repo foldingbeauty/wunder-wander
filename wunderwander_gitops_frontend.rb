@@ -3,6 +3,7 @@ $LOAD_PATH << '.'
 require 'sinatra'
 require 'lib/k8s_helpers'
 require 'lib/log_helpers'
+require 'lib/wunderwander_helpers'
 
 module WunderWander
   # frontend stuff
@@ -11,7 +12,7 @@ module WunderWander
       @logger = LogHelpers.create_logger
       @k8s_client = K8sHelpers::Client.new @logger
       @logger.info '---'
-      @logger.info 'WunderWander GitOps Frontend v0.1.3'
+      @logger.info "WunderWander GitOps Frontend v#{WunderWanderHelpers::VERSION}"
       @logger.info '---'
     end
 
