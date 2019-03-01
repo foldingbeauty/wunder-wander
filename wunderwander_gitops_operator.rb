@@ -57,7 +57,7 @@ module WunderWander
     def start_operator
       loop do
         git_ops_operator.observe_and_act
-        sleep(10)
+        sleep(WunderWanderHelpers::DEFAULT_PULL_FREQENCY)
         @logger.info 'Next check for WunderWander Gitops resources in 10 seconds'
         @logger.info '---'
       end

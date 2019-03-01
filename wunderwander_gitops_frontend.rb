@@ -28,7 +28,7 @@ module WunderWander
 end
 
 git_ops_frontend = WunderWander::GitopsFrontend.new
-sleep(10) until git_ops_frontend.public_key
+sleep(WunderWanderHelpers::DEFAULT_PULL_FREQENCY) until git_ops_frontend.public_key
 
 set :environment, :development
 set :port, 3000
