@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'coveralls', require: false
 gem 'cucumber'
 gem 'git'
 gem 'k8s-client'
@@ -13,4 +14,3 @@ gem 'slim'
 gem 'sshkey'
 gem 'thin'
 gem 'uri-ssh_git'
-gem 'coveralls', require: false
