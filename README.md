@@ -8,6 +8,7 @@ An easy to use GitOps deployment tool for Kubernetes workloads.
 ## Quality
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a75cf1d0c809b33d08f/maintainability)](https://codeclimate.com/github/foldingbeauty/wunder-wander/maintainability)
 [![CircleCI](https://circleci.com/gh/foldingbeauty/wunder-wander/tree/master.svg?style=svg)](https://circleci.com/gh/foldingbeauty/wunder-wander/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/foldingbeauty/wunder-wander/badge.svg?branch=master)](https://coveralls.io/github/foldingbeauty/wunder-wander?branch=master)
 
 ## Status
 
