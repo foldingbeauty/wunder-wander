@@ -69,4 +69,3 @@ end
 
 git_ops_operator = WunderWander::GitopsOperator.new
 git_ops_operator.start_operator
-
