@@ -51,3 +51,4 @@ build-iPhoneSimulator/
 tmp
 .kube
 .ssh
+test_results
