@@ -14,7 +14,6 @@ module WunderWander
 
   # Operator
   class GitopsOperator
-    
 
     def initialize
       @logger = LogHelpers.create_logger
