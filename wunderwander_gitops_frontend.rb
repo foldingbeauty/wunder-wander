@@ -30,7 +30,7 @@ end
 git_ops_frontend = WunderWander::GitopsFrontend.new
 sleep(WunderWanderHelpers::DEFAULT_PULL_FREQENCY) until git_ops_frontend.public_key
 
-set :environment, :development
+set :environment, ENV['GITOPS_ENVIRONMENT'] || :development
 set :port, 3000
 set :bind, '0.0.0.0'
 set :root, File.expand_path('./frontend')

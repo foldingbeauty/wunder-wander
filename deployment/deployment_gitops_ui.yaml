@@ -21,6 +21,9 @@ spec:
           image: foldingbeauty/wunderwander-gitops:0.1.4-dev
           command: ["ruby"]
           args: ["wunderwander_gitops_frontend.rb"]
+          env:
+            - name: GITOPS_ENVIRONMENT
+              value: production
           livenessProbe:
             httpGet:
               path: /

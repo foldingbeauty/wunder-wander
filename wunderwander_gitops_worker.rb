@@ -8,6 +8,7 @@ require 'net/ssh'
 require 'uri/ssh_git'
 require 'lib/k8s_helpers'
 require 'lib/git_helpers'
+require 'lib/log_helpers'
 require 'lib/wunderwander_helpers'
 
 module WunderWander
@@ -25,11 +26,11 @@ module WunderWander
     end
 
     def initialize_git
-      git_branch = ENV['GIT_BRANCH'] || 'develop'
-      git_repo = ENV['GIT_REPO'] || 'git@github.com:wunderwander/gitops.git'
+      git_branch = ENV['GIT_BRANCH'] || 'master'
+      git_repo = ENV['GIT_REPO'] || 'git@github.com:foldingbeauty/wunderwander-test-app.git'
       git_name = ENV['GIT_NAME'] || 'wunderwander'
       @logger.info "Initialize Git with name #{git_name} --> #{git_branch} :: #{git_repo}"
-      @git = GitHelpers::Client.new git_repo, git_name, git_branch, logger
+      @git = GitHelpers::Client.new git_repo, git_name, git_branch, @logger
       @git_repo_parsed = URI::SshGit.parse(git_repo)
     end
 
@@ -40,7 +41,7 @@ module WunderWander
 
     def observe_and_act
       @git.pull
-      return if @git.changed?
+      return if @git.no_change?
 
       @logger.info "Deployment changed, update deployment with ref #{@git.ref}"
       resources = K8s::Resource.from_files(@git.checkout_location)
@@ -53,7 +54,9 @@ module WunderWander
       @git.check_ssh_connection(@git_repo_parsed.host, @git_repo_parsed.user)
       @git.prepare
       loop do
-        observe_and_act(@git, @logger, @k8s_client, @deployment_name_space)
+        observe_and_act
+        @logger.info "Next check for changes in #{WunderWanderHelpers::DEFAULT_PULL_FREQENCY} seconds"
+        @logger.info '---'
         sleep(WunderWanderHelpers::DEFAULT_PULL_FREQENCY)
       end
     end

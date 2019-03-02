@@ -52,3 +52,4 @@ tmp
 .kube
 .ssh
 test_results
+bin

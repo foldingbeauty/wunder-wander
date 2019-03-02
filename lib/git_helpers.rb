@@ -46,18 +46,17 @@ module GitHelpers
     end
 
     def pull
+      @previous_commit_ref = @current_commit_ref
       @client.pull
       @current_commit_ref = @client.revparse('HEAD')
-      @changed = @current_commit_ref != @previous_commit_ref
-      @previous_commit_ref = @current_commit_ref
     end
 
     def ref
       @current_commit_ref
     end
 
-    def changed?
-      @changed
+    def no_change?
+      @current_commit_ref&.eql? @previous_commit_ref
     end
   end
 
