@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # handeling log stuff
 module LogHelpers
   def self.create_logger

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # check for GitOp CRDs and deploy a worker
 $LOAD_PATH << '.'
 require 'k8s-client'
@@ -53,13 +55,13 @@ module WunderWander
         deploy_worker(worker)
       end
     rescue K8s::Error::NotFound
-      @logger.info "CRD not found"
+      @logger.info 'CRD not found'
     end
 
     def start_operator
       loop do
         observe_and_act
-        @logger.info "Next check for WunderWander Gitops resources in #{WunderWanderHelpers::DEFAULT_PULL_FREQENCY} seconds"
+        @logger.info "Next check in #{WunderWanderHelpers::DEFAULT_PULL_FREQENCY} seconds"
         @logger.info '---'
         sleep(WunderWanderHelpers::DEFAULT_PULL_FREQENCY)
       end

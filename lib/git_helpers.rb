@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'net/ssh'
 
 # Utils to work with Git
 module GitHelpers
-  LOCAL_GIT_STORAGE = './tmp'.freeze
+  LOCAL_GIT_STORAGE = './tmp'
   DEFAULT_PULL_FREQENCY = 10
 
   # Git Client to abstract away implementation

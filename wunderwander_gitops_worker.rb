@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 $LOAD_PATH << '.'
 require 'k8s-client'
 require 'git'
@@ -55,7 +57,7 @@ module WunderWander
       @git.prepare
       loop do
         observe_and_act
-        @logger.info "Next check for changes in #{WunderWanderHelpers::DEFAULT_PULL_FREQENCY} seconds"
+        @logger.info "Next check in #{WunderWanderHelpers::DEFAULT_PULL_FREQENCY} seconds"
         @logger.info '---'
         sleep(WunderWanderHelpers::DEFAULT_PULL_FREQENCY)
       end

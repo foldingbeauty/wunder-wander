@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # frontend for WunderWander Gitops.
 $LOAD_PATH << '.'
 require 'sinatra'
