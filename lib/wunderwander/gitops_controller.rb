@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 # check for GitOp CRDs and deploy a worker
 $LOAD_PATH << '.'
 require 'k8s-client'
 require 'lib/k8s_helpers'
 require 'lib/log_helpers'
+require 'lib/wunderwander_helpers'
 require 'mustache'
 
 module WunderWander
@@ -11,17 +14,14 @@ module WunderWander
     self.template_file = 'operator/worker-template.yaml.mustache'
   end
 
-  # Operator
-  class GitopsOperator
-    VERSION = '0.1.3'.freeze
-    BASE_IMAGE = 'foldingbeauty/wunderwander-gitops'.freeze
-
+  # Controller
+  class GitopsController
     def initialize
       @logger = LogHelpers.create_logger
       @k8s_client = K8sHelpers::Client.new @logger
 
       @logger.info '---'
-      @logger.info "WunderWander GitOps Operator v#{VERSION}"
+      @logger.info "WunderWander GitOps Controller v#{WunderWanderHelpers::VERSION}"
       @logger.info '---'
 
       # create secret
@@ -31,7 +31,7 @@ module WunderWander
     def render_worker_template(resource)
       template = GitopsWorker.new
       template[:name] = "worker-#{resource.metadata.name}"
-      template[:image] = "#{BASE_IMAGE}:#{VERSION}"
+      template[:image] = WunderWanderHelpers::IMAGE
       template[:git_branch] = resource.spec.branch
       template[:git_repo] = resource.spec.repo
       template[:git_name] = resource.metadata.name
@@ -54,14 +54,17 @@ module WunderWander
         worker = render_worker_template(resource)
         deploy_worker(worker)
       end
-      @logger.info 'Next check for WunderWander Gitops resources in 10 seconds'
-      @logger.info '---'
-      sleep(10)
+    rescue K8s::Error::NotFound
+      @logger.info 'CRD not found'
+    end
+
+    def start_controller
+      loop do
+        observe_and_act
+        @logger.info "Next check in #{WunderWanderHelpers::DEFAULT_PULL_FREQENCY} seconds"
+        @logger.info '---'
+        sleep(WunderWanderHelpers::DEFAULT_PULL_FREQENCY)
+      end
     end
   end
-end
-
-git_ops_operator = WunderWander::GitopsOperator.new
-loop do
-  git_ops_operator.observe_and_act
 end

@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'k8s-client'
 require 'net/ssh'
 require 'sshkey'
 
 # Helper utils for Kubernetes
 module K8sHelpers
-  DEFAULT_K8S_CONFIG = '.kube/config'.freeze
-  GITOPS_CRD_NAME = 'gitops.io.wunderwander'.freeze
-  GITOPS_NAMESPACE = 'wunderwander-gitops'.freeze
+  DEFAULT_K8S_CONFIG = '.kube/config'
+  GITOPS_CRD_NAME = 'gitops.io.wunderwander'
+  GITOPS_NAMESPACE = 'wunderwander-gitops'
 
   # Wrapper around Kubernetes client
   class Client
@@ -22,6 +24,7 @@ module K8sHelpers
                 else
                   K8s::Client.in_cluster_config
                 end
+
       @logger = logger
     end
 
