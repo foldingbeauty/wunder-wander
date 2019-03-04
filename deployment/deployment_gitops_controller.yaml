@@ -18,6 +18,6 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops-operator-controller-mainprocess
-          image: foldingbeauty/wunderwander-gitops:0.1.4-dev
+          image: foldingbeauty/wunderwander-gitops:0.1.4
           command: ["ruby"]
-          args: ["wunderwander_gitops_operator.rb"]
+          args: ["wunderwander_gitops_controller.rb"]
