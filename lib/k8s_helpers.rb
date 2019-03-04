@@ -24,6 +24,7 @@ module K8sHelpers
                 else
                   K8s::Client.in_cluster_config
                 end
+
       @logger = logger
     end
 
