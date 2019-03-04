@@ -11,7 +11,7 @@ require 'mustache'
 module WunderWander
   # Worker template
   class GitopsWorker < Mustache
-    self.template_file = 'operator/worker-template.yaml.mustache'
+    self.template_file = 'controller/worker-template.yaml.mustache'
   end
 
   # Controller
