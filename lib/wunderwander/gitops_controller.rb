@@ -14,14 +14,14 @@ module WunderWander
     self.template_file = 'operator/worker-template.yaml.mustache'
   end
 
-  # Operator
-  class GitopsOperator
+  # Controller
+  class GitopsController
     def initialize
       @logger = LogHelpers.create_logger
       @k8s_client = K8sHelpers::Client.new @logger
 
       @logger.info '---'
-      @logger.info "WunderWander GitOps Operator v#{WunderWanderHelpers::VERSION}"
+      @logger.info "WunderWander GitOps Controller v#{WunderWanderHelpers::VERSION}"
       @logger.info '---'
 
       # create secret
@@ -58,7 +58,7 @@ module WunderWander
       @logger.info 'CRD not found'
     end
 
-    def start_operator
+    def start_controller
       loop do
         observe_and_act
         @logger.info "Next check in #{WunderWanderHelpers::DEFAULT_PULL_FREQENCY} seconds"
@@ -68,6 +68,3 @@ module WunderWander
     end
   end
 end
-
-git_ops_operator = WunderWander::GitopsOperator.new
-git_ops_operator.start_operator
