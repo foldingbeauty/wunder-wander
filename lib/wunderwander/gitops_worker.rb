@@ -23,8 +23,6 @@ module WunderWander
       @logger.info "WunderWander GitOps Worker v#{WunderWanderHelpers::VERSION}"
       @logger.info '---'
       @deployment_name_space = ENV['GITOPS_NAMESPACE'] || 'test'
-      initialize_git
-      initialize_namespace
     end
 
     def initialize_git
@@ -53,6 +51,8 @@ module WunderWander
     end
 
     def start_worker
+      initialize_git
+      initialize_namespace
       @git.check_ssh_connection(@git_repo_parsed.host, @git_repo_parsed.user)
       @git.prepare
       loop do

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 $LOAD_PATH << '.'
 require 'sinatra'
 require 'lib/wunderwander/gitops_frontend.rb'
