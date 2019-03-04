@@ -42,7 +42,6 @@ module WunderWander
     def observe_and_act
       @git.pull
       return if @git.no_change?
-
       @logger.info "Deployment changed, update deployment with ref #{@git.ref}"
       resources = K8s::Resource.from_files(@git.checkout_location)
       resources.each do |resource|
