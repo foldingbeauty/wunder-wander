@@ -23,7 +23,7 @@ TBD
 - Deploy the Wunder-Wander Gitops controller and CRD:
 
 
-`$ kubectl apply -f kubectl apply -f  "https://raw.githubusercontent.com/foldingbeauty/wunder-wander/$(curl -s https://raw.githubusercontent.com/foldingbeauty/wunder-wander/master/release.txt)/deployment/deployment.yaml"`
+`$ kubectl apply -f  "https://raw.githubusercontent.com/foldingbeauty/wunder-wander/$(curl -s https://raw.githubusercontent.com/foldingbeauty/wunder-wander/master/release.txt)/deployment/deployment.yaml"`
 
 
 - Check if everything is ready to go:
