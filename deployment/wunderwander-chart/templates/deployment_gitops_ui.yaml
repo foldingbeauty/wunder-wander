@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gitops-operator-ui
-  namespace:  wunderwander-gitops
+  namespace: {{ .Release.Namespace }}
 spec:
   strategy:
     type: Recreate
@@ -18,7 +18,8 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops-operator-ui-mainprocess
-          image: foldingbeauty/wunderwander-gitops:0.1.4-dev
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["ruby"]
           args: ["wunderwander_gitops_frontend.rb"]
           env:

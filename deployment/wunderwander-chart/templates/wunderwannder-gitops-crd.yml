@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   # name must match the spec fields below, and be in the form: <plural>.<group>
   name: gitops.io.wunderwander
-  namespace: gitops
+  namespace: {{ .Release.Namespace }}
 spec:
   # group name to use for REST API: /apis/<group>/<version>
   group: io.wunderwander

@@ -1,10 +1,45 @@
-# source (0.1.3) = _namespace.yaml
+---
+# Source: wunderwander-chart/templates/1_namespace.yaml
 apiVersion: v1
 kind: Namespace
 metadata:
   name: wunderwander-gitops
+
 ---
-# source (0.1.3) = clusterrole.yaml
+# Source: wunderwander-chart/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gitops-access-api
+  namespace: wunderwander-gitops
+
+---
+# Source: wunderwander-chart/templates/wunderwannder-gitops-crd.yml
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  # name must match the spec fields below, and be in the form: <plural>.<group>
+  name: gitops.io.wunderwander
+  namespace: wunderwander-gitops
+spec:
+  # group name to use for REST API: /apis/<group>/<version>
+  group: io.wunderwander
+  # list of versions supported by this CustomResourceDefinition
+  version: v1
+  scope: Namespaced
+  names:
+    # plural name to be used in the URL: /apis/<group>/<version>/<plural>
+    plural: gitops
+    # singular name to be used as an alias on the CLI and for display
+    singular: gitop
+    # kind is normally the CamelCased singular type. Your resource manifests use this.
+    kind: GitOp
+    # shortNames allow shorter string to match your resource on the CLI
+    shortNames:
+    - go
+
+---
+# Source: wunderwander-chart/templates/clusterrole.yaml
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -20,8 +55,9 @@ rules:
     - '*'
     verbs:
     - '*'
+
 ---
-# source (0.1.3) = clusterrolebinding.yaml
+# Source: wunderwander-chart/templates/clusterrolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
@@ -34,8 +70,9 @@ roleRef:
   kind: ClusterRole
   name: cluster-admin
   apiGroup: rbac.authorization.k8s.io
+
 ---
-# source (0.1.3) = deployment_gitops_controller.yaml
+# Source: wunderwander-chart/templates/deployment_gitops_controller.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -56,16 +93,22 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops-operator-controller-mainprocess
-          image: foldingbeauty/wunderwander-gitops:0.1.4-dev
+          image: "foldingbeauty/wunderwander-gitops:0.1.4-dev"
+          imagePullPolicy: IfNotPresent
           command: ["ruby"]
           args: ["wunderwander_gitops_operator.rb"]
+          env:
+            - name: GITOPS_NAMESPACE
+              value: wunderwander-gitops
+            - name: GITOPS_IMAGE
+              value: "foldingbeauty/wunderwander-gitops:0.1.4-dev"
 ---
-# source (0.1.3) = deployment_gitops_ui.yaml
+# Source: wunderwander-chart/templates/deployment_gitops_ui.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gitops-operator-ui
-  namespace:  wunderwander-gitops
+  namespace: wunderwander-gitops
 spec:
   strategy:
     type: Recreate
@@ -81,7 +124,8 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops-operator-ui-mainprocess
-          image: foldingbeauty/wunderwander-gitops:0.1.4-dev
+          image: "foldingbeauty/wunderwander-gitops:0.1.4-dev"
+          imagePullPolicy: IfNotPresent
           command: ["ruby"]
           args: ["wunderwander_gitops_frontend.rb"]
           env:
@@ -93,35 +137,4 @@ spec:
               port: 3000
             initialDelaySeconds: 3
             periodSeconds: 3
----
-# source (0.1.3) = serviceaccount.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: gitops-access-api
-  namespace: wunderwander-gitops
----
-# source (0.1.3) = wunderwannder-gitops-crd.yml
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  # name must match the spec fields below, and be in the form: <plural>.<group>
-  name: gitops.io.wunderwander
-  namespace: gitops
-spec:
-  # group name to use for REST API: /apis/<group>/<version>
-  group: io.wunderwander
-  # list of versions supported by this CustomResourceDefinition
-  version: v1
-  scope: Namespaced
-  names:
-    # plural name to be used in the URL: /apis/<group>/<version>/<plural>
-    plural: gitops
-    # singular name to be used as an alias on the CLI and for display
-    singular: gitop
-    # kind is normally the CamelCased singular type. Your resource manifests use this.
-    kind: GitOp
-    # shortNames allow shorter string to match your resource on the CLI
-    shortNames:
-    - go
----
+

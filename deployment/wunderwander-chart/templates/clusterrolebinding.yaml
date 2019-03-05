@@ -5,7 +5,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: gitops-access-api
-    namespace: wunderwander-gitops
+    namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
   name: cluster-admin
