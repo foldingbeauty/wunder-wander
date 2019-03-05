@@ -93,7 +93,7 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops-operator-controller-mainprocess
-          image: "foldingbeauty/wunderwander-gitops:0.1.4-dev"
+          image: "foldingbeauty/wunderwander-gitops:0.1.5"
           imagePullPolicy: IfNotPresent
           command: ["ruby"]
           args: ["wunderwander_gitops_operator.rb"]
@@ -101,7 +101,7 @@ spec:
             - name: GITOPS_NAMESPACE
               value: wunderwander-gitops
             - name: GITOPS_IMAGE
-              value: "foldingbeauty/wunderwander-gitops:0.1.4-dev"
+              value: "foldingbeauty/wunderwander-gitops:0.1.5"
 ---
 # Source: wunderwander-chart/templates/deployment_gitops_ui.yaml
 apiVersion: apps/v1
@@ -124,7 +124,7 @@ spec:
       serviceAccountName: gitops-access-api
       containers:
         - name: gitops-operator-ui-mainprocess
-          image: "foldingbeauty/wunderwander-gitops:0.1.4-dev"
+          image: "foldingbeauty/wunderwander-gitops:0.1.5"
           imagePullPolicy: IfNotPresent
           command: ["ruby"]
           args: ["wunderwander_gitops_frontend.rb"]

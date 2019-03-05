@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: foldingbeauty/wunderwander-gitops
-  tag: 0.1.4-dev
+  tag: 0.1.5
   pullPolicy: IfNotPresent
   
 wunderwander:

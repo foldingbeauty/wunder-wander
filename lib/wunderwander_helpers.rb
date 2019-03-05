@@ -4,6 +4,7 @@
 module WunderWanderHelpers
   VERSION = '0.1.4-dev'
   BASE_IMAGE = 'foldingbeauty/wunderwander-gitops'
-  IMAGE = "#{BASE_IMAGE}:#{VERSION}" || ENV['GITOPS_IMAGE']
+  IMAGE = ENV['GITOPS_IMAGE'] || "#{BASE_IMAGE}:#{VERSION}"
   DEFAULT_PULL_FREQENCY = 10
+  GITOPS_NAMESPACE = ENV['GITOPS_NAMESPACE'] || 'wunderwander-gitops'
 end

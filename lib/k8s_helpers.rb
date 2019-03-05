@@ -8,7 +8,6 @@ require 'sshkey'
 module K8sHelpers
   DEFAULT_K8S_CONFIG = '.kube/config'
   GITOPS_CRD_NAME = 'gitops.io.wunderwander'
-  GITOPS_NAMESPACE = 'wunderwander-gitops'
 
   # Wrapper around Kubernetes client
   class Client
@@ -33,7 +32,7 @@ module K8sHelpers
         apiVersion: 'v1',
         kind: 'Secret',
         metadata: {
-          namespace: K8sHelpers::GITOPS_NAMESPACE,
+          namespace: WunderWanderHelpers::GITOPS_NAMESPACE,
           name: 'ssh-keys',
           type: 'Opaque'
         }
@@ -63,7 +62,7 @@ module K8sHelpers
         private_key: Base64.encode64(new_key.private_key).delete("\n"),
         public_key: Base64.encode64(new_key.ssh_public_key).delete("\n")
       }
-      deploy_resource(K8sHelpers::GITOPS_NAMESPACE, secret)
+      deploy_resource(WunderWanderHelpers::GITOPS_NAMESPACE, secret)
     end
 
     def public_key
@@ -80,7 +79,7 @@ module K8sHelpers
 
     def gitop_resources
       api = @client.api('io.wunderwander/v1')
-      api.resource('gitops', namespace: K8sHelpers::GITOPS_NAMESPACE).list
+      api.resource('gitops', namespace: WunderWanderHelpers::GITOPS_NAMESPACE).list
     end
 
     def deploy_resource(namespace, resource)
