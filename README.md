@@ -8,6 +8,7 @@ An easy to use GitOps deployment tool for Kubernetes workloads.
 ## Quality
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a75cf1d0c809b33d08f/maintainability)](https://codeclimate.com/github/foldingbeauty/wunder-wander/maintainability)
 [![CircleCI](https://circleci.com/gh/foldingbeauty/wunder-wander/tree/master.svg?style=svg)](https://circleci.com/gh/foldingbeauty/wunder-wander/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/foldingbeauty/wunder-wander/badge.svg?branch=master)](https://coveralls.io/github/foldingbeauty/wunder-wander?branch=master)
 
 ## Status
 
@@ -22,7 +23,7 @@ TBD
 - Deploy the Wunder-Wander Gitops controller and CRD:
 
 
-`$ kubectl apply -f https://raw.githubusercontent.com/foldingbeauty/wunder-wander/0.1.3/deployment/deployment.yaml`
+`$ kubectl apply -f kubectl apply -f  "https://raw.githubusercontent.com/foldingbeauty/wunder-wander/$(curl -s https://raw.githubusercontent.com/foldingbeauty/wunder-wander/master/release.txt)/deployment/deployment.yaml"`
 
 
 - Check if everything is ready to go:
@@ -99,7 +100,7 @@ replicaset.apps/test-app-c67cd5bfc                      1         1         1   
 $ kubectl logs deploy/test-app -n wunderwander-gitops
 
 I, [2019-02-25T20:13:20.943442 #1]  INFO -- : ---
-I, [2019-02-25T20:13:20.943755 #1]  INFO -- : WunderWander GitOps Worker v0.1.1
+I, [2019-02-25T20:13:20.943755 #1]  INFO -- : WunderWander GitOps Worker v0.1.4
 I, [2019-02-25T20:13:20.943846 #1]  INFO -- : Lets get to work!
 I, [2019-02-25T20:13:20.943921 #1]  INFO -- : ---
 I, [2019-02-25T20:13:20.944243 #1]  INFO -- : Create deployment namespace test
