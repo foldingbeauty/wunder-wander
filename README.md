@@ -1,5 +1,3 @@
-
-
 ![alt text](https://github.com/foldingbeauty/wunder-wander/raw/master/frontend/public/assets/images/logo.png "Logo Wunder-Wander Gitops")
 
 
@@ -9,6 +7,7 @@ An easy to use GitOps deployment tool for Kubernetes workloads.
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a75cf1d0c809b33d08f/maintainability)](https://codeclimate.com/github/foldingbeauty/wunder-wander/maintainability)
 [![CircleCI](https://circleci.com/gh/foldingbeauty/wunder-wander/tree/master.svg?style=svg)](https://circleci.com/gh/foldingbeauty/wunder-wander/tree/master)
 [![Coverage Status](https://coveralls.io/repos/github/foldingbeauty/wunder-wander/badge.svg?branch=master)](https://coveralls.io/github/foldingbeauty/wunder-wander?branch=master)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffoldingbeauty%2Fwunder-wander.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffoldingbeauty%2Fwunder-wander?ref=badge_shield)
 
 ## Status
 
@@ -120,3 +119,7 @@ $ kubectl get pods -n test
 NAME                                READY   STATUS    RESTARTS   AGE
 nginx-deployment-6cbcd97dd7-rc2hh   1/1     Running   0          21m
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffoldingbeauty%2Fwunder-wander.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffoldingbeauty%2Fwunder-wander?ref=badge_large)
