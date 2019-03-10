@@ -7,7 +7,8 @@ RUN chown wunder-wander:wunder-wander /app
 USER wunder-wander
 
 COPY --chown=wunder-wander:wunder-wander Gemfile .
-RUN bundle install
+RUN bundle install --without development test
+
 
 COPY --chown=wunder-wander:wunder-wander deployment deployment
 COPY --chown=wunder-wander:wunder-wander frontend frontend
