@@ -120,3 +120,7 @@ $ kubectl get pods -n test
 NAME                                READY   STATUS    RESTARTS   AGE
 nginx-deployment-6cbcd97dd7-rc2hh   1/1     Running   0          21m
 ```
+
+## Licensing
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffoldingbeauty%2Fwunder-wander.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffoldingbeauty%2Fwunder-wander?ref=badge_large)
